@@ -1,0 +1,75 @@
+---
+title: "Trabajo grupal-Entrega 2"
+output: html_notebook
+---
+
+VARIABLE: Regimen politico
+```{r}
+library(htmltab)
+regimen=htmltab(doc="https://es.wikipedia.org/wiki/Forma_de_gobierno",
+                which = '//*[@id="mw-content-text"]/div[1]/table[2]')
+names(regimen)
+
+#Limpiamos la data
+##Limpiamos Pais
+regimen=regimen[,c(1,2)]
+regimen$Pais=gsub("Â","", regimen$Estado)
+regimen$Pais1=gsub("Ã¡","a", regimen$Pais)
+regimen$pais2=gsub("Ã©","e",regimen$Pais1)
+regimen$pais3=gsub("Ãº","u", regimen$pais2)
+regimen$pais4=gsub("Ã","i", regimen$pais3)
+regimen$Pais5=gsub("i³","o",regimen$pais4)
+regimen$Pais=gsub("i±","n",regimen$Pais5)
+
+#Limpiamos Regimen
+regimen$Regimen=regimen$`Forma constitucional`
+regimen$Regimen1=gsub("Ã¡","a", regimen$Regimen)
+regimen$regimen2=gsub("Ã©","e",regimen$Regimen1)
+regimen$regimen3=gsub("Ãº","u", regimen$regimen2)
+regimen$regimen4=gsub("Ã","i", regimen$regimen3)
+regimen$Regimen=gsub("i³","o",regimen$regimen4)
+
+#Eliminamos columnas sucias
+##Columnas de Pais
+regimen$Pais1=NULL
+regimen$pais2=NULL
+regimen$pais3=NULL
+regimen$pais4=NULL
+regimen$Pais5=NULL
+regimen$Estado=NULL
+
+##Columnas de Regimen
+regimen$`Forma constitucional`=NULL
+regimen$Regimen1=NULL
+regimen$regimen2=NULL
+regimen$regimen3=NULL
+regimen$regimen4=NULL
+
+#Verificamos head 
+head(regimen) #La data ya se encuentra limpia
+
+#Creamos CSV se la data limpia
+write.csv(regimen, "Regimenpolitico.csv", row.names = F)
+```
+
+
+VARIABLE 5: indice de democracia
+```{r}
+demoindex=htmltab(doc = "https://en.wikipedia.org/wiki/Democracy_Index",
+                  which = '//*[@id="mw-content-text"]/div[1]/table[2]')
+names(demoindex)
+
+#Limpiamos las columnas
+demoindex$`Rank >> Rank`=NULL
+demoindex[,c(3:7,9:10)]=NULL
+
+#Cambiamos de nombre a las columnas
+names(demoindex)=c("Country","Score","Regime")
+
+#Limpiamos la columna country
+demoindex$Country=gsub("Â","",demoindex$Country)
+
+#Creamos el CSV de la data limpia
+write.csv(demoindex, "Democracy index.csv", row.names = F)
+```
+
