@@ -31,4 +31,4 @@ _Nombre de la base de datos_: "Democracy index".
 _Cantidad de variables_: 3.
 > "Country": País al que corresponde la información del índice de democracia.
 > "Score": Puntaje obtenido por cada país en la escala de índice democrático, con un puntaje del 1 al 10, siendo 1 el valor mínimo y 10 el valor máximo.
-> "Regime": categoría de régimen por país, de acuerdo al nivel de democracia. Se distingue de la primera variable, pues mientras ella menciona el tipo de régimen, esta variable muestra el nivel de democracia en cada régimen.
+> "Regime": categoría de régimen por país, de acuerdo al nivel de democracia. Se distingue de la variable "Regimen", pues mientras ella menciona el tipo de régimen político, esta variable muestra el nivel de democracia en cada régimen.
