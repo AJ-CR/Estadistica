@@ -1,5 +1,5 @@
 # Estadistica
-# Reporte de meta-data:
+# Reporte de metadata:
 
 **Variable 1: Régimen político**
 La primera variable corresponde al tipo de régimen político de 196 países.
